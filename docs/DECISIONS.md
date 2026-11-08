@@ -195,14 +195,18 @@ self-hosted copy for a client is a later deployment, not a different product.
 Storage is the clients'; metadata is kilobytes. Relay traffic is the one variable cost
 and is bounded by B3.
 
-**F4 — Sizing benchmark, measured on our own archive.**
-The archive holds 260,256 files and about 10 TB across 27 projects. The realistic
-deliverables-only benchmark is **18XX-CS**: 31,655 files (18,076 PDF, 9,024 DWG), 105 GB,
-11 folder levels, 165-character deepest path. Working-file-heavy projects (PRO-113-VNC
-41,856 files, 001-VR3D 53,078 files at 2.6 TB) are not CDE-shaped and are used only for
-scan cost.
+**F4 — Sizing benchmark, measured on our own archive (corrected).**
+Top-level folders in `S:\99-Archived` are **clients**, not projects: 27 clients, 365
+second-level folders, 260,086 files, about 9 TB.
+The realistic deliverables-only benchmark is **18XX-CS / 2006-CS-AL SADER 2A**: 10,398
+files (5,592 PDF, 3,426 DWG), 15.6 GB, 9 folder levels, 131-character deepest path.
+Largest single project by file count is **RG / Redipods** (10,235 files, 7,673 PDF, 664
+`.msg` emails) where the project *is* the client folder. Deepest real project is
+**PRO-148-PMH / BA VI LODGE** at 11 levels and a 253-character path.
+Projects above 40,000 files are working files, libraries and point clouds
+(001-VR3D 53,078; 00-RAW PC 56,704 at 1.5 TB), not CDE content.
 Design point: 5,000 containers and 50,000 revisions per project, metadata in a single
-PostgreSQL database on the NAS. Files are not counted against us at all.
+PostgreSQL database on the NAS. A 10,000-file, 15 GB project is the normal case.
 
 ---
 
