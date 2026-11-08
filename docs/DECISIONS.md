@@ -88,6 +88,19 @@ What a party is allowed to see is replicated into that party's folder. Replicas 
 identical by hash and can repair each other; a missing or corrupt copy is restored from
 any holder.
 
+**B8 — Short paths, because real projects already hit the Windows limit.**
+The deepest path in our own archive is 253 characters (PRO-148-PMH), seven short of the
+260-character Windows limit that many tools still enforce. So the project folder gets one
+short name, never a deep prefix, and the agent must handle long paths and never append
+more than one level of its own.
+
+**B9 — Do not sell storage savings.**
+Measured on our own archive: byte-identical repeats are only about 8% of the bytes
+(18XX-CS 8.1%, BIG 8.1%), because every re-export differs. Deduplication is a
+correctness feature (one blob, one hash, many holders), not a saving. The value is
+finding the right revision and proving what was built.
+
+
 ---
 
 ## C — States, gates, visibility
@@ -113,6 +126,15 @@ visibility report is the answer to "why didn't Contractor B receive A-101?".
 Hiding a container hides everything under it. A child cannot re-open what a parent
 closed.
 
+**C5 — Hiding is done in the hub, after publishing.**
+The desktop side only publishes: the user picks parent folders and Cindy lists what is
+new or changed. Which subfolders and files inside those folders are not accessible to
+other parties is chosen in the web app, on the published content, by whoever owns it.
+Effective immediately on the next sync of the affected party.
+Consequence accepted: the originator can withhold part of its own published set, which
+is the point, and the information manager can see and override every hide.
+
+
 ---
 
 ## D — Clients
@@ -132,6 +154,13 @@ in-browser DWG preview needs a converter licence and is priced before it is prom
 **D3 — No agent, no problem.**
 A party without the agent works in the browser: view the tree, download a file, upload a
 revision. Same permissions, same audit.
+
+**D4 — The desktop app is a publish picker, not a browser.**
+The user opens it, selects one or more parent folders, and Cindy walks them and lists
+what is new or changed since the last publish, by content hash. The user assigns each
+file to a container and publishes. It never navigates the project tree, so it never
+becomes the second file explorer the owner does not want.
+
 
 ---
 
@@ -166,9 +195,17 @@ self-hosted copy for a client is a later deployment, not a different product.
 Storage is the clients'; metadata is kilobytes. Relay traffic is the one variable cost
 and is bounded by B3.
 
+**F4 — Sizing benchmark, measured on our own archive.**
+The archive holds 260,256 files and about 10 TB across 27 projects. The realistic
+deliverables-only benchmark is **18XX-CS**: 31,655 files (18,076 PDF, 9,024 DWG), 105 GB,
+11 folder levels, 165-character deepest path. Working-file-heavy projects (PRO-113-VNC
+41,856 files, 001-VR3D 53,078 files at 2.6 TB) are not CDE-shaped and are used only for
+scan cost.
+Design point: 5,000 containers and 50,000 revisions per project, metadata in a single
+PostgreSQL database on the NAS. Files are not counted against us at all.
+
 ---
 
 ## Open questions
 
-1. **Scale of the first real project** — containers, files, total gigabytes. Decides
-   whether the hub is a small database on the NAS or needs dedicated hardware.
+None.

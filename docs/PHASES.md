@@ -36,12 +36,14 @@ pulling the network cable leaves both sides working and converging on reconnect.
 **Delivers:** containers with a number, title, originator, type, parent and typed
 attributes from a project template; a tree with subitems; delegation of a subtree to a
 party; import of the team's existing Excel MIDP; a web list with filters and the
-free-text pocket.
+free-text pocket; the publish picker that takes parent folders and lists new and changed
+files by hash.
 
 **Done when:** an existing MIDP spreadsheet is imported into a tree in one action, a
 party delegated a work package can add and edit containers inside it, cannot edit
-outside it, and a filtered list (type = drawing, level 3, state = shared) answers
-instantly at 5,000 containers.
+outside it, a 20 GB folder selected in the picker produces a list of only the files that
+changed since the last publish, and a filtered list (type = drawing, level 3, state =
+shared) answers instantly at 5,000 containers.
 
 **Depends on:** A1, A4, A5, A6, D2, D3.
 
@@ -50,8 +52,9 @@ instantly at 5,000 containers.
 ## P3 — States, gates, visibility
 
 **Delivers:** work in progress → shared → published → archived; the two signed gates;
-replication driven by visibility; user-chosen hiding that can only reduce visibility;
-the per-party visibility report; the audit log.
+replication driven by visibility; hiding of published subfolders and files chosen in the
+web app, which can only reduce visibility; the per-party visibility report; the audit
+log.
 
 **Done when:** a work-in-progress container is absent from the other party's folder and
 cannot be requested from the hub; a hidden subfolder is absent from the other party's
